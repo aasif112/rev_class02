@@ -11,23 +11,23 @@ jobs:
       runs-on: ubuntu-latest	
    
    steps:
-   - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-   - name: Install NodeJS
-     uses: actions/setup-node@v2-beta
-     with: 
+      - name: Install NodeJS
+        uses: actions/setup-node@v2-beta
+        with: 
            node-version: 12
 
-   - name: Install Surge
-     run: npm install –glabal surge
+      - name: Install Surge
+        run: npm install –glabal surge
         
-   - uses:  borales/actions-yarn@2.0.0
-     with:
-       cmd: install
+      - uses:  borales/actions-yarn@2.0.0
+        with:
+          cmd: install
       
-   - name: Basic React App
-     run: yarn build
+      - name: Basic React App
+        run: yarn build
 
       
-   - name: Deploy to Surge
-     run: surge ./build rev-class02-react-surge.sh --token ${{secrets.SURGE_TOKEN}}
+      - name: Deploy to Surge
+        run: surge ./build rev-class02-react-surge.sh --token ${{secrets.SURGE_TOKEN}}
