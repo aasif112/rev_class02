@@ -1,9 +1,9 @@
 name: React Basic App and Deploy
 on:
    push:
-      branches: [master]
+      branches: [main]
    pull_request: 
-      branches: [master]
+      branches: [main]
 jobs:
    build:
       runs-on: Ubuntu-latest
@@ -27,4 +27,4 @@ jobs:
         run: npm install –glabal surge
       
       - name: Deploy to Surge
-        run: surge ./build rev-class02-react-surge.sh –token{{secrets.SURGE_TOKEN}}
+        run: surge ./build rev-class02-react-surge.sh --token {{secrets.SURGE_TOKEN}}
