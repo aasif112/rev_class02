@@ -27,4 +27,4 @@ jobs:
         run: npm install –glabal surge
       
       - name: Deploy to Surge
-        run: surge ./build rev-react-surge.sh –token{{secrets.SURGE_TOKEN}}
+        run: surge ./build rev-class02-react-surge.sh –token{{secrets.SURGE_TOKEN}}
