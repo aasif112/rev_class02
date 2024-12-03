@@ -5,9 +5,10 @@ on:
       branches: [master]
    pull_request:
       branches: [master]
-  
+
 jobs:
    build:				
+<<<<<<< Updated upstream
       runs-on: ubuntu-latest	
    
 	steps:
@@ -31,3 +32,28 @@ jobs:
       
       - name: Deploy to Surge
         run: surge ./build rev-react-class02.surge.sh --token ${{secrets.SURGE_TOKEN}}
+=======
+      runs-on: ubuntu-latest
+
+      steps:
+         - uses: actions/checkout@v2
+
+         - name: Install NodeJS
+         - uses: actions/setup-node@v2-beta
+           with: 
+            node-version: '12'
+
+         - name: Install Surge
+           run: npm i -g surge
+
+         - uses:  borales/actions-yarn@2.0.0
+           with:
+            cmd: install
+
+         - name: Basic React App
+           run: yarn build
+
+
+         - name: Deploy to Surge
+           run: surge ./build rev-class02-react-surge.sh --token ${{secrets.SURGE_TOKEN}}
+>>>>>>> Stashed changes
