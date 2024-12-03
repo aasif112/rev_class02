@@ -1,59 +1,36 @@
 name: React Basic App and Deploy
 
+
 on:
-   push:
-      branches: [master]
-   pull_request:
-      branches: [master]
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
 
 jobs:
-   build:				
-<<<<<<< Updated upstream
-      runs-on: ubuntu-latest	
-   
-	steps:
-	- uses: actions/checkout@v2
+  build:
+    runs-on: ubuntu-latest
 
-   - name: Install NodeJS
-      uses: actions/setup-node@v2-beta
-        with: 
-           node-version: 12
+    steps:
+    - uses:  actions/checkout@v4
 
-   - name: Install Surge
-      run: npm install –glabal surge
-        
-      - uses:  borales/actions-yarn@2.0.0
-        with:
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v4.0.3
+      with:
+        node-version:  '20'
+
+    - name: Installing Yarn
+      uses: Borales/actions-yarn@v4
+      with:
+          # Yarn command
           cmd: install
+
+    - name: Create Build
+      run: yarn build
       
-      - name: Basic React App
-        run: yarn build
-
+    - name: Install Surge
+      run: npm i -g surge
       
-      - name: Deploy to Surge
-        run: surge ./build rev-react-class02.surge.sh --token ${{secrets.SURGE_TOKEN}}
-=======
-      runs-on: ubuntu-latest
-
-      steps:
-         - uses: actions/checkout@v2
-
-         - name: Install NodeJS
-         - uses: actions/setup-node@v2-beta
-           with: 
-            node-version: '12'
-
-         - name: Install Surge
-           run: npm i -g surge
-
-         - uses:  borales/actions-yarn@2.0.0
-           with:
-            cmd: install
-
-         - name: Basic React App
-           run: yarn build
-
-
-         - name: Deploy to Surge
-           run: surge ./build rev-class02-react-surge.sh --token ${{secrets.SURGE_TOKEN}}
->>>>>>> Stashed changes
+    - name: Deploy to Surge
+      run: surge ./build rev-class02-react-surge.sh --token ${{secrets.SURGE_TOKEN}}  
+  
